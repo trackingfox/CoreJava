@@ -865,16 +865,12 @@ public class Q1_50 {
 
 		return empty;
 	}
-	
+
 	/*
-	 * Length 	Index Limit 	Series 1	Series 1 - length	Series 2	Series 2 - Length 
-		12	11	0,4,8	3	1,5,9	3
-		13	12	0,4,8	3	1,5,9	3
-		14	13	0,4,8,12	4	1,5,9	3
-		15	14	0,4,8,12	4	1,5,9,13	4
-		16	15	0,4,8,12	4	1,5,9,13	4
-		17	16	0,4,8,12,16	5	1,5,9,13	4
-		18	17	0,4,8,12,16	5	1,5,9,13,17	4
+	 * Length Index Limit Series 1 Series 1 - length Series 2 Series 2 - Length 12
+	 * 11 0,4,8 3 1,5,9 3 13 12 0,4,8 3 1,5,9 3 14 13 0,4,8,12 4 1,5,9 3 15 14
+	 * 0,4,8,12 4 1,5,9,13 4 16 15 0,4,8,12 4 1,5,9,13 4 17 16 0,4,8,12,16 5
+	 * 1,5,9,13 4 18 17 0,4,8,12,16 5 1,5,9,13,17 4
 	 */
 
 	public String altPairs_failed(String str) {
@@ -965,6 +961,137 @@ public class Q1_50 {
 		Assert.assertEquals(altPairs("ThisThatTheOther"), "ThThThth");
 		Assert.assertEquals(altPairs("Chocolate"), "Chole");
 		Assert.assertEquals(altPairs("CodingHorror"), "Congrr");
+
+	}
+
+	/*
+	 * Suppose the string "yak" is unlucky. Given a string, return a version where
+	 * all the "yak" are removed, but the "a" can be any char. The "yak" strings
+	 * will not overlap.
+	 * 
+	 * 
+	 * stringYak("yakpak") → "pak" stringYak("pakyak") → "pak" stringYak("yak123ya")
+	 * → "123ya"
+	 */
+
+	public String stringYak(String str) {
+
+		int len = str.length();
+		String result = "";
+
+		for (int i = 0; i < len; i++) {
+
+			if (i + 2 < str.length() && str.substring(i, i + 3).equals("yak")) {
+				i = i + 2;
+			} else
+				result = result + str.charAt(i);
+		}
+		return result;
+	}
+
+	@Test
+	public void stringYaktest() {
+		Assert.assertEquals(stringYak("yakpak"), "pak");
+		Assert.assertEquals(stringYak("pakyak"), "pak");
+		Assert.assertEquals(stringYak("yak123ya"), "123ya");
+		Assert.assertEquals(stringYak("yakpakymk"), "pakymk");
+
+	}
+
+	/*
+	 * Given an array of ints, return the number of times that two 6's are next to
+	 * each other in the array. Also count instances where the second "6" is
+	 * actually a 7.
+	 * 
+	 * 
+	 * array667([6, 6, 2]) → 1 array667([6, 6, 2, 6]) → 1 array667([6, 7, 2, 6]) → 1
+	 */
+
+	public int array667(int[] nums) {
+		int count = 0;
+		for (int i = 0; i < (nums.length - 1); i++) {
+			if (nums[i] == 6) {
+				if (nums[i + 1] == 6 || nums[i + 1] == 7)
+					count++;
+			}
+		}
+
+		return count;
+	}
+
+	@Test
+	public void array667test() {
+		Assert.assertEquals(array667(new int[] { 6, 6, 2 }), 1);
+		Assert.assertEquals(array667(new int[] { 6, 7, 6, 6 }), 2);
+
+		Assert.assertEquals(array667(new int[] {}), 0);
+		Assert.assertEquals(array667(new int[] { 6, 1 }), 0);
+
+		Assert.assertEquals(array667(new int[] { 1, 2, 3, 6, 6 }), 1);
+
+	}
+
+	/*
+	 * Given an array of ints, we'll say that a triple is a value appearing 3 times
+	 * in a row in the array. Return true if the array does not contain any triples.
+	 * 
+	 * 
+	 * noTriples([1, 1, 2, 2, 1]) → true noTriples([1, 1, 2, 2, 2, 1]) → false
+	 * noTriples([1, 1, 1, 2, 2, 2, 1]) → false
+	 */
+
+	public boolean noTriples1(int[] nums) {
+
+		for (int i = 0; i < (nums.length - 2); i++) {
+			int first = nums[i];
+			if (nums[i + 1] == first && nums[i + 2] == first) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	@Test
+	public void noTriplestest() {
+		Assert.assertEquals(noTriples(new int[] { 1, 1, 2, 2, 1 }), true);
+		Assert.assertEquals(noTriples(new int[] { 1, 1, 2, 2, 2, 1 }), false);
+		Assert.assertEquals(noTriples(new int[] { 1, 1, 1, 2, 2, 2, 1 }), false);
+		Assert.assertEquals(noTriples(new int[] { 1, 1, 2, 2, 1 }), true);
+		Assert.assertEquals(noTriples(new int[] { 1, 1, 2, 2, 1 }), true);
+
+	}
+
+	/*
+	 * Given an array of ints, return true if it contains a 2, 7, 1 pattern: a
+	 * value, followed by the value plus 5, followed by the value minus 1.
+	 * Additionally the 271 counts even if the "1" differs by 2 or less from the
+	 * correct value.
+	 * 
+	 * 
+	 * has271([1, 2, 7, 1]) → true has271([1, 2, 8, 1]) → false has271([2, 7, 1]) →
+	 * true
+	 */
+
+	public boolean has271(int[] nums) {
+
+		for (int i = 0; i < (nums.length - 2); i++) {
+			int val = nums[i];
+
+			if (nums[i + 1] == (val + 5) && Math.abs(nums[i + 2] - (val - 1)) <= 2)
+				return true;
+		}
+
+		return false;
+	}
+
+	@Test
+	public void has271test() {
+		Assert.assertEquals(has271(new int[] { 1, 2, 7, 1 }), true);
+		Assert.assertEquals(has271(new int[] { 1, 2, 8, 1 }), false);
+
+		Assert.assertEquals(has271(new int[] { 2, 7, 1 }), true);
+		Assert.assertEquals(has271(new int[] { 1, 2, 7, 1 }), true);
 
 	}
 
