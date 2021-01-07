@@ -162,4 +162,10 @@ public class Q50_100 {
 	 * "odin"
 	 */
 
+	public String withoutEnd(String str) {
+
+		return str;
+
+	}
+
 }
