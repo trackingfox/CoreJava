@@ -372,4 +372,92 @@ public class Q50_100 {
 		return str.substring(((str.length() - 1) / 2) - 1, ((str.length() - 1) / 2) + 2);
 	}
 
+	/*
+	 * Given a string, return a string length 2 made of its first 2 chars. If the
+	 * string length is less than 2, use '@' for the missing chars.
+	 * 
+	 * 
+	 * atFirst("hello") → "he" atFirst("hi") → "hi" atFirst("h") → "h@"
+	 */
+	public String atFirst(String str) {
+		if (str.length() < 2) {
+			return str + "@";
+		} else {
+			return str.substring(0, 2);
+		}
+	}
+
+//	@Test
+//	public void atFirsttest() {
+//		Assert.assertEquals(atFirst("hello"), "he");
+//		Assert.assertEquals(atFirst(""), "@@");
+//		Assert.assertEquals(atFirst("j"), "j@");
+//		Assert.assertEquals(atFirst("java"), "ja");
+//	}
+
+	/*
+	 * Given 2 strings, a and b, return a new string made of the first char of a and
+	 * the last char of b, so "yo" and "java" yields "ya". If either string is
+	 * length 0, use '@' for its missing char.
+	 * 
+	 * 
+	 * lastChars("last", "chars") → "ls" lastChars("yo", "java") → "ya"
+	 * lastChars("hi", "") → "h@"
+	 */
+
+	public String lastChars(String a, String b) {
+
+		String str = "";
+
+		if (a == "") {
+			str = a;
+			return b.substring(0, 1) + "@";
+		} else if (b == "") {
+			str = b;
+			return a.substring(0, 1) + "@";
+		}
+
+		else
+
+			return a.substring(0, 1) + b.substring(str.length() - 1);
+
+	}
+
+	@Test
+	public void lastCharstest() {
+		Assert.assertEquals(lastChars("last", "chars"), "ls");
+		Assert.assertEquals(lastChars("yo", "java"), "ya");
+		Assert.assertEquals(lastChars("", ""), "@@");
+		Assert.assertEquals(lastChars("kitten", ""), "k@");
+	}
+
+	/*
+	 * Given two strings, append them together (known as "concatenation") and return
+	 * the result. However, if the concatenation creates a double-char, then omit
+	 * one of the chars, so "abc" and "cat" yields "abcat".
+	 * 
+	 * 
+	 * conCat("abc", "cat") → "abcat" conCat("dog", "cat") → "dogcat" conCat("abc",
+	 * "") → "abc"
+	 * 
+	 */
+
+	public String conCat(String a, String b) {
+
+		if (a.charAt(a.length() - 1) == b.charAt(0))
+			return a.substring(0, a.length() - 1) + b.substring(0);
+
+		else
+			return a + b;
+	}
+
+	@Test
+	public void conCatTest() {
+		Assert.assertEquals(conCat("abc", ""), "abc");
+		Assert.assertEquals(conCat("", "cat"), "cat");
+		Assert.assertEquals(conCat("dog", "cat"), "dogcat");
+		Assert.assertEquals(conCat("pig", "g"), "pig");
+
+	}
+
 }
