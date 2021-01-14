@@ -11,4 +11,10 @@ public class Array1 {
 	 * 6, 1, 2, 3]) → false
 	 */
 
+	public boolean firstLast6(int[] nums) {
+
+		return false;
+
+	}
+
 }
