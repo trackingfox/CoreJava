@@ -407,19 +407,12 @@ public class Q50_100 {
 
 	public String lastChars(String a, String b) {
 
-		String str = "";
+		if (a == "")
+			a = "@";
+		if (b == "")
+			b = "@";
 
-		if (a == "") {
-			str = a;
-			return b.substring(0, 1) + "@";
-		} else if (b == "") {
-			str = b;
-			return a.substring(0, 1) + "@";
-		}
-
-		else
-
-			return a.substring(0, 1) + b.substring(str.length() - 1);
+		return a.substring(0, 1) + b.substring(b.length() - 1);
 
 	}
 
@@ -444,11 +437,13 @@ public class Q50_100 {
 
 	public String conCat(String a, String b) {
 
-		if (a.charAt(a.length() - 1) == b.charAt(0))
-			return a.substring(0, a.length() - 1) + b.substring(0);
+		if (a.length() != 0 && b.length() != 0) {
+			if (a.charAt(a.length() - 1) == b.charAt(0))
+				return a.substring(0, a.length() - 1) + b.substring(0);
+		}
 
-		else
-			return a + b;
+		return a + b;
+
 	}
 
 	@Test
