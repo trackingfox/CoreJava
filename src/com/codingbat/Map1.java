@@ -293,7 +293,25 @@ public class Map1 {
 	 * wordCount(["c", "b", "a"]) → {"a": 1, "b": 1, "c": 1} wordCount(["c", "c",
 	 * "c", "c"]) → {"c": 4}
 	 */
+//SOLUTION 1
+	public Map<String, Integer> wordCount(String[] strings) {
 
+		Map<String, Integer> mp = new HashMap<>();
+		int n = strings.length;
+
+		for (int i = 0; i < n; i++) {
+			if (mp.containsKey(strings[i])) {
+				mp.put(strings[i], mp.get(strings[i]) + 1);
+			}
+
+			else {
+				mp.put(strings[i], 1);
+			}
+		}
+		return mp;
+	}
+
+//SOLUTION 2
 	public void countFreq(int arr[], int n) {
 		Map<Integer, Integer> mp = new HashMap<>();
 
@@ -311,5 +329,17 @@ public class Map1 {
 			System.out.println(entry.getKey() + " " + entry.getValue());
 		}
 	}
+
+	/*
+	 * Given an array of non-empty strings, return a Map<String, String> with a key
+	 * for every different first character seen, with the value of all the strings
+	 * starting with that character appended together in the order they appear in
+	 * the array.
+	 * 
+	 * 
+	 * firstChar(["salt", "tea", "soda", "toast"]) → {"s": "saltsoda", "t":
+	 * "teatoast"} firstChar(["aa", "bb", "cc", "aAA", "cCC", "d"]) → {"a": "aaaAA",
+	 * "b": "bb", "c": "cccCC", "d": "d"} firstChar([]) → {}
+	 */
 
 }
