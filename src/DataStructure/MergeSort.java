@@ -11,6 +11,10 @@ public class MergeSort {
 		int[] inputArr = { 48, 36, 13, 52, 19, 94, 21 };
 		MergeSort ms = new MergeSort();
 		ms.sort(inputArr);
+
+		for (int i : inputArr) {
+			System.out.println(i + " ");
+		}
 	}
 
 	public void sort(int inputArr[]) {
@@ -24,10 +28,46 @@ public class MergeSort {
 
 		if (lowerIndex < higherIndex) {
 			int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
+
+			// it will sort the left side of the array
+			divideArray(lowerIndex, middle);
+
+			// it will sort the right side of the array
+			divideArray(middle + 1, higherIndex);
+
+			mergeArray(lowerIndex, middle, higherIndex);
 		}
 	}
 
-	public void mergeArray(int lowerInex, int middle, int higherIndex) {
+	public void mergeArray(int lowerIndex, int middle, int higherIndex) {
+
+		for (int i = lowerIndex; i <= higherIndex; i++) {
+			tempMergeArr[i] = array[i];
+
+		}
+
+		int i = lowerIndex;
+		int j = middle + 1;
+		int k = lowerIndex;
+
+		while (i <= middle && j <= higherIndex) {
+			if (tempMergeArr[i] <= tempMergeArr[j]) {
+				array[k] = tempMergeArr[i];
+				i++;
+			}
+
+			else {
+				array[k] = tempMergeArr[j];
+				j++;
+			}
+			k++;
+		}
+
+		while (i <= middle) {
+			array[k] = tempMergeArr[i];
+			k++;
+			i++;
+		}
 
 	}
 }
