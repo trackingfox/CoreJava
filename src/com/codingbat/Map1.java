@@ -342,4 +342,63 @@ public class Map1 {
 	 * "b": "bb", "c": "cccCC", "d": "d"} firstChar([]) → {}
 	 */
 
+	public Map<String, String> firstChar(String[] strings) {
+
+		Map<String, String> map = new HashMap<String, String>();
+		for (String s : strings) {
+			if (!map.containsKey(s.substring(0, 1))) { // first time we've seen this string
+				map.put(s.substring(0, 1), s);
+
+			} else {
+				String existing = map.get(s.substring(0, 1));
+				map.put(s.substring(0, 1), existing + s);
+			}
+
+		}
+		return map;
+
+	}
+
+	/*
+	 * Loop over the given array of strings to build a result string like this: when
+	 * a string appears the 2nd, 4th, 6th, etc. time in the array, append the string
+	 * to the result. Return the empty string if no string appears a 2nd time.
+	 * 
+	 * 
+	 * wordAppend(["a", "b", "a"]) → "a" wordAppend(["a", "b", "a", "c", "a", "d",
+	 * "a"]) → "aa" wordAppend(["a", "", "a"]) → "a"
+	 */
+
+	public String wordAppend(String[] strings) {
+		String result = "";
+		Map<String, Integer> map = new HashMap<String, Integer>();
+
+		for (String currentString : strings) {
+			int i = 0;
+			if (map.containsKey(currentString)) {
+				i = map.get(currentString) + 1;
+				map.put(currentString, i);
+				if (i % 2 == 0) {
+					result = result + currentString;
+				}
+			} else {
+				map.put(currentString, i + 1);
+			}
+
+		}
+
+		return result;
+	}
+
+	/*
+	 * Given an array of strings, return a Map<String, Boolean> where each different
+	 * string is a key and its value is true if that string appears 2 or more times
+	 * in the array.
+	 * 
+	 * 
+	 * wordMultiple(["a", "b", "a", "c", "b"]) → {"a": true, "b": true, "c": false}
+	 * wordMultiple(["c", "b", "a"]) → {"a": false, "b": false, "c": false}
+	 * wordMultiple(["c", "c", "c", "c"]) → {"c": true}
+	 */
+
 }
