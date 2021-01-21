@@ -5,7 +5,7 @@ import java.util.Stack;
 
 /**
  *
- *
+ * https://www.hackerrank.com/challenges/equal-stacks/problem
  */
 public class EqualStacks {
 	static int equalStacks(int[] h1, int[] h2, int[] h3) {
