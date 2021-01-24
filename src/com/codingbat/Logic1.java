@@ -397,4 +397,44 @@ public class Logic1 {
 		return count;
 	}
 
+	/*
+	 * Given two int values, return whichever value is larger. However if the two
+	 * values have the same remainder when divided by 5, then the return the smaller
+	 * value. However, in all cases, if the two values are the same, return 0. Note:
+	 * the % "mod" operator computes the remainder, e.g. 7 % 5 is 2.
+	 * 
+	 * 
+	 * maxMod5(2, 3) → 3 maxMod5(6, 2) → 6 maxMod5(3, 2) → 3
+	 * 
+	 */
+
+	public int maxMod5(int a, int b) {
+		if (a == b)
+			return 0;
+		if (a % 5 == b % 5)
+			return (a < b) ? a : b;
+		return (a > b) ? a : b;
+	}
+
+	/*
+	 * You have a red lottery ticket showing ints a, b, and c, each of which is 0,
+	 * 1, or 2. If they are all the value 2, the result is 10. Otherwise if they are
+	 * all the same, the result is 5. Otherwise so long as both b and c are
+	 * different from a, the result is 1. Otherwise the result is 0.
+	 * 
+	 * 
+	 * redTicket(2, 2, 2) → 10 redTicket(2, 2, 1) → 0 redTicket(0, 0, 0) → 5
+	 */
+
+	public int redTicket(int a, int b, int c) {
+		if (a == b && b == c) {
+			if (a == 2)
+				return 10;
+			return 5;
+		}
+		if (a != b && a != c)
+			return 1;
+		return 0;
+	}
+
 }
