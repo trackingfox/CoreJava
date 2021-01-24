@@ -60,4 +60,70 @@ public class Logic2 {
 	 * luckySum(1, 2, 3) → 6 luckySum(1, 2, 13) → 3 luckySum(1, 13, 3) → 1
 	 * 
 	 */
+
+	public int luckySum(int a, int b, int c) {
+
+		if (a == 13)
+			return 0;
+		else if (b == 13)
+			return a;
+		else if (c == 13)
+			return a + b;
+		else
+			return a + b + c;
+	}
+
+	/*
+	 * Given 2 int values greater than 0, return whichever value is nearest to 21
+	 * without going over. Return 0 if they both go over.
+	 * 
+	 * 
+	 * blackjack(19, 21) → 21 blackjack(21, 19) → 21 blackjack(19, 22) → 19
+	 */
+
+	public int blackjack(int a, int b) {
+		if (a > 21 && b > 21)
+			return 0;
+		if (a > 21)
+			return b;
+		if (b > 21)
+			return a;
+		return a > b ? a : b;
+	}
+
+	/*
+	 * Given three ints, a b c, one of them is small, one is medium and one is
+	 * large. Return true if the three values are evenly spaced, so the difference
+	 * between small and medium is the same as the difference between medium and
+	 * large.
+	 * 
+	 * 
+	 * evenlySpaced(2, 4, 6) → true evenlySpaced(4, 6, 2) → true evenlySpaced(4, 6,
+	 * 3) → false
+	 */
+	public boolean evenlySpaced(int a, int b, int c) {
+		return ((a + b) == 2 * c) || ((a + c) == 2 * b) || ((b + c) == 2 * a);
+	}
+
+	/*
+	 * Given three ints, a b c, return true if one of b or c is "close" (differing
+	 * from a by at most 1), while the other is "far", differing from both other
+	 * values by 2 or more. Note: Math.abs(num) computes the absolute value of a
+	 * number.
+	 * 
+	 * 
+	 * closeFar(1, 2, 10) → true closeFar(1, 2, 3) → false closeFar(4, 1, 3) → true
+	 */
+
+	public boolean closeFar(int a, int b, int c) {
+		if (Math.abs(a - b) <= 1 && Math.abs(a - c) >= 2 && Math.abs(b - c) >= 2) {
+			return true;
+		} else if (Math.abs(a - c) <= 1 && Math.abs(a - b) >= 2 && Math.abs(b - c) >= 2) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
 }
