@@ -110,4 +110,26 @@ public class String2 {
 	 * "And", 2) → "ThisAndThis" repeatSeparator("This", "And", 1) → "This"
 	 */
 
+	public String repeatSeparator(String word, String sep, int count) {
+		if (count == 0)
+			return "";
+		StringBuilder stbuild = new StringBuilder(count * word.length() + sep.length() * (count - 1));
+		for (int i = 1; i < count; i++) {
+			stbuild.append(word);
+			stbuild.append(sep);
+		}
+		stbuild.append(word);
+		return stbuild.toString();
+	}
+
+	/*
+	 * Given a string, consider the prefix string made of the first N chars of the
+	 * string. Does that prefix string appear somewhere else in the string? Assume
+	 * that the string is not empty and that N is in the range 1..str.length().
+	 * 
+	 * 
+	 * prefixAgain("abXYabc", 1) → true prefixAgain("abXYabc", 2) → true
+	 * prefixAgain("abXYabc", 3) → false
+	 */
+
 }
