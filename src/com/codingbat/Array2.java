@@ -155,4 +155,41 @@ public class Array2 {
 		return (noOne || noFour);
 	}
 
+	/*
+	 * We'll say that a value is "everywhere" in an array if for every pair of
+	 * adjacent elements in the array, at least one of the pair is that value.
+	 * Return true if the given value is everywhere in the array.
+	 * 
+	 * 
+	 * isEverywhere([1, 2, 1, 3], 1) → true isEverywhere([1, 2, 1, 3], 2) → false
+	 * isEverywhere([1, 2, 1, 3, 4], 1) → false
+	 */
+
+	public boolean isEverywhere(int[] nums, int val) {
+		for (int i = 0; i < nums.length - 1; i++) {
+			if (nums[i] != val && nums[i + 1] != val)
+				return false;
+		}
+		return true;
+	}
+
+	/*
+	 * Given an array of ints, return true if the array contains a 2 next to a 2 or
+	 * a 4 next to a 4, but not both.
+	 * 
+	 * 
+	 * either24([1, 2, 2]) → true either24([4, 4, 1]) → true either24([4, 4, 1, 2,
+	 * 2]) → false
+	 */
+
+	public boolean either24(int[] nums) {
+		int no2pair = 1, no4pair = 1;
+		for (int i = 0; i < nums.length - 1 && (no2pair + no4pair != 0); i++) {
+			if (nums[i] == 2 && nums[i + 1] == 2)
+				no2pair = 0;
+			else if (nums[i] == 4 && nums[i + 1] == 4)
+				no4pair = 0;
+		}
+		return ((no2pair ^ no4pair) == 1);
+	}
 }
