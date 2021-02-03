@@ -298,4 +298,72 @@ public class Array2 {
 		}
 		return (count == 3);
 	}
+
+	/*
+	 * Given an array of ints, return true if every 2 that appears in the array is
+	 * next to another 2.
+	 * 
+	 * 
+	 * twoTwo([4, 2, 2, 3]) → true twoTwo([2, 2, 4]) → true twoTwo([2, 2, 4, 2]) →
+	 * false
+	 */
+
+	public boolean twoTwo(int[] nums) {
+		int count = 0;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] == 2)
+				count++;
+			else {
+				if (state == 1)
+					return false;
+				else
+					count = 0;
+			}
+		}
+		return (count != 1);
+	}
+
+	/*
+	 * Return true if the array contains, somewhere, three increasing adjacent
+	 * numbers like .... 4, 5, 6, ... or 23, 24, 25.
+	 * 
+	 * 
+	 * tripleUp([1, 4, 5, 6, 2]) → true tripleUp([1, 2, 3]) → true tripleUp([1, 2,
+	 * 4]) → false
+	 */
+
+	public boolean tripleUp(int[] nums) {
+		boolean prevUp = false;
+		for (int i = 0; i < nums.length - 1; i++) {
+			if (nums[i + 1] - nums[i] == 1) {
+				if (prevUp)
+					return true;
+				else
+					prevUp = true;
+			} else
+				prevUp = false;
+		}
+		return false;
+	}
+
+	/*
+	 * Return an array that is "left shifted" by one -- so {6, 2, 5, 3} returns {2,
+	 * 5, 3, 6}. You may modify and return the given array, or return a new array.
+	 * 
+	 * 
+	 * shiftLeft([6, 2, 5, 3]) → [2, 5, 3, 6] shiftLeft([1, 2]) → [2, 1]
+	 * shiftLeft([1]) → [1]
+	 * 
+	 */
+
+	public int[] shiftLeft(int[] nums) {
+		if (nums.length >= 2) {
+			int temp = nums[0];
+			for (int i = 0; i < nums.length - 1; i++)
+				nums[i] = nums[i + 1];
+			nums[nums.length - 1] = temp;
+		}
+		return nums;
+	}
+
 }
