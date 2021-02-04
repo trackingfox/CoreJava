@@ -314,7 +314,7 @@ public class Array2 {
 			if (nums[i] == 2)
 				count++;
 			else {
-				if (state == 1)
+				if (count == 1)
 					return false;
 				else
 					count = 0;
@@ -366,4 +366,88 @@ public class Array2 {
 		return nums;
 	}
 
+	/*
+	 * For each multiple of 10 in the given array, change all the values following
+	 * it to be that multiple of 10, until encountering another multiple of 10. So
+	 * {2, 10, 3, 4, 20, 5} yields {2, 10, 10, 10, 20, 20}.
+	 * 
+	 * 
+	 * tenRun([2, 10, 3, 4, 20, 5]) → [2, 10, 10, 10, 20, 20] tenRun([10, 1, 20, 2])
+	 * → [10, 10, 20, 20] tenRun([10, 1, 9, 20]) → [10, 10, 10, 20]
+	 */
+
+	public int[] tenRun(int[] nums) {
+		int tenMode = -1;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] % 10 == 0)
+				tenMode = nums[i];
+			else if (tenMode != -1)
+				nums[i] = tenMode;
+		}
+		return nums;
+	}
+
+	/*
+	 * Given a non-empty array of ints, return a new array containing the elements
+	 * from the original array that come before the first 4 in the original array.
+	 * The original array will contain at least one 4. Note that it is valid in java
+	 * to create an array of length 0.
+	 * 
+	 * 
+	 * pre4([1, 2, 4, 1]) → [1, 2] pre4([3, 1, 4]) → [3, 1] pre4([1, 4, 4]) → [1]
+	 */
+
+	public int[] pre4(int[] nums) {
+		int p = 0;
+		int[] arr;
+		while (nums[p] != 4)
+			p++;
+		arr = new int[p];
+		for (int i = 0; i < p; i++)
+			arr[i] = nums[i];
+		return arr;
+	}
+
+	/*
+	 * Given a non-empty array of ints, return a new array containing the elements
+	 * from the original array that come after the last 4 in the original array. The
+	 * original array will contain at least one 4. Note that it is valid in java to
+	 * create an array of length 0.
+	 * 
+	 * 
+	 * post4([2, 4, 1, 2]) → [1, 2] post4([4, 1, 4, 2]) → [2] post4([4, 4, 1, 2, 3])
+	 * → [1, 2, 3]
+	 */
+
+	public int[] post4(int[] nums) {
+		int p = nums.length - 1;
+		int[] arr;
+		while (nums[p] != 4)
+			p--;
+		arr = new int[nums.length - 1 - p];
+		for (int i = p + 1; i < nums.length; i++)
+			arr[i - p - 1] = nums[i];
+		return arr;
+	}
+
+	/*
+	 * We'll say that an element in an array is "alone" if there are values before
+	 * and after it, and those values are different from it. Return a version of the
+	 * given array where every instance of the given value which is alone is
+	 * replaced by whichever value to its left or right is larger.
+	 * 
+	 * 
+	 * notAlone([1, 2, 3], 2) → [1, 3, 3] notAlone([1, 2, 3, 2, 5, 2], 2) → [1, 3,
+	 * 3, 5, 5, 2] notAlone([3, 4], 3) → [3, 4]
+	 */
+
+	public int[] notAlone(int[] nums, int val) {
+		for (int i = 1; i < nums.length - 1; i++) {
+			if (nums[i] == val) {
+				if (nums[i - 1] != val && nums[i + 1] != val)
+					nums[i] = (nums[i - 1] > nums[i + 1]) ? nums[i - 1] : nums[i + 1];
+			}
+		}
+		return nums;
+	}
 }
