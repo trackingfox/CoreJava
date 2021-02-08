@@ -302,4 +302,106 @@ public class Recursion1 {
 			return stringClean(str.substring(1));
 		return str.charAt(0) + stringClean(str.substring(1));
 	}
+
+	/*
+	 * Given a string that contains a single pair of parenthesis, compute
+	 * recursively a new string made of only of the parenthesis and their contents,
+	 * so "xyz(abc)123" yields "(abc)".
+	 * 
+	 * 
+	 * parenBit("xyz(abc)123") → "(abc)" parenBit("x(hello)") → "(hello)"
+	 * parenBit("(xy)1") → "(xy)"
+	 */
+
+	public String parenBit(String str) {
+		int len = str.length();
+		if (str.charAt(0) != '(') {
+			if (str.charAt(len - 1) != ')')
+				return parenBit(str.substring(1, len - 1));
+			return parenBit(str.substring(1));
+		}
+		if (str.charAt(len - 1) != ')')
+			return parenBit(str.substring(0, len - 1));
+		return str;
+	}
+
+	/*
+	 * Given a string, return true if it is a nesting of zero or more pairs of
+	 * parenthesis, like "(())" or "((()))". Suggestion: check the first and last
+	 * chars, and then recur on what's inside them.
+	 * 
+	 * 
+	 * nestParen("(())") → true nestParen("((()))") → true nestParen("(((x))") →
+	 * false
+	 * 
+	 */
+
+	public boolean nestParen(String str) {
+		int len = str.length();
+		if (len == 0)
+			return true;
+		if (str.charAt(0) == '(' && str.charAt(len - 1) == ')')
+			return nestParen(str.substring(1, len - 1));
+		return false;
+	}
+
+	/*
+	 * Given a string and a non-empty substring sub, compute recursively the number
+	 * of times that sub appears in the string, without the sub strings overlapping.
+	 * 
+	 * 
+	 * strCount("catcowcat", "cat") → 2 strCount("catcowcat", "cow") → 1
+	 * strCount("catcowcat", "dog") → 0
+	 */
+
+	public int strCount(String str, String sub) {
+		int sLen = sub.length();
+		if (str.length() < sLen)
+			return 0;
+		if (str.substring(0, sLen).equals(sub))
+			return 1 + strCount(str.substring(sLen), sub);
+		return strCount(str.substring(1), sub);
+	}
+
+	/*
+	 * Given a string and a non-empty substring sub, compute recursively if at least
+	 * n copies of sub appear in the string somewhere, possibly with overlapping. N
+	 * will be non-negative.
+	 * 
+	 * 
+	 * strCopies("catcowcat", "cat", 2) → true strCopies("catcowcat", "cow", 2) →
+	 * false strCopies("catcowcat", "cow", 1) → true
+	 */
+
+	public boolean strCopies(String str, String sub, int n) {
+		if (n == 0)
+			return true;
+		if (str.length() < sub.length())
+			return false;
+		if (str.substring(0, sub.length()).equals(sub))
+			return strCopies(str.substring(1), sub, n - 1);
+		return strCopies(str.substring(1), sub, n);
+	}
+
+	/*
+	 * Given a string and a non-empty substring sub, compute recursively the largest
+	 * substring which starts and ends with sub and return its length.
+	 * 
+	 * 
+	 * strDist("catcowcat", "cat") → 9 strDist("catcowcat", "cow") → 3
+	 * strDist("cccatcowcatxx", "cat") → 9
+	 */
+	public int strDist(String str, String sub) {
+		int stLen = str.length();
+		int sbLen = sub.length();
+		if (stLen < sbLen)
+			return 0;
+		if (str.substring(0, sbLen).equals(sub)) {
+			if (str.substring(stLen - sbLen, stLen).equals(sub))
+				return stLen;
+			return strDist(str.substring(0, stLen - 1), sub);
+		}
+		return strDist(str.substring(1), sub);
+	}
+
 }
