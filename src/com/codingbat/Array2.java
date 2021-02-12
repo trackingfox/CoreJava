@@ -450,4 +450,107 @@ public class Array2 {
 		}
 		return nums;
 	}
+
+	/*
+	 * Return a version of the given array where each zero value in the array is
+	 * replaced by the largest odd value to the right of the zero in the array. If
+	 * there is no odd value to the right of the zero, leave the zero as a zero.
+	 * 
+	 * 
+	 * zeroMax([0, 5, 0, 3]) → [5, 5, 3, 3] zeroMax([0, 4, 0, 3]) → [3, 4, 3, 3]
+	 * zeroMax([0, 1, 0]) → [1, 1, 0]
+	 */
+
+	public int[] zeroMax(int[] nums) {
+		int max;
+		for (int i = 0; i < nums.length - 1; i++) {
+			if (nums[i] == 0) {
+				max = 0;
+				for (int k = i + 1; k < nums.length; k++) {
+					if (nums[k] > max && nums[k] % 2 == 1)
+						max = nums[k];
+				}
+				if (max != 0)
+					nums[i] = max;
+			}
+		}
+		return nums;
+	}
+	/*
+	 * Return an array that contains the exact same numbers as the given array, but
+	 * rearranged so that all the even numbers come before all the odd numbers.
+	 * Other than that, the numbers can be in any order. You may modify and return
+	 * the given array, or make a new array.
+	 * 
+	 * 
+	 * evenOdd([1, 0, 1, 0, 0, 1, 1]) → [0, 0, 0, 1, 1, 1, 1] evenOdd([3, 3, 2]) →
+	 * [2, 3, 3] evenOdd([2, 2, 2]) → [2, 2, 2]
+	 */
+
+	public int[] evenOdd(int[] nums) {
+		int temp;
+		int evenIndex = 0;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] % 2 == 0) {
+				temp = nums[i];
+				nums[i] = nums[evenIndex];
+				nums[evenIndex] = temp;
+				evenIndex++;
+			}
+		}
+		return nums;
+	}
+
+	/*
+	 * Consider the leftmost and righmost appearances of some value in an array.
+	 * We'll say that the "span" is the number of elements between the two
+	 * inclusive. A single value has a span of 1. Returns the largest span found in
+	 * the given array. (Efficiency is not a priority.)
+	 * 
+	 * 
+	 * maxSpan([1, 2, 1, 1, 3]) → 4 maxSpan([1, 4, 2, 1, 4, 1, 4]) → 6 maxSpan([1,
+	 * 4, 2, 1, 4, 4, 4]) → 6
+	 */
+
+	public int maxSpan(int[] nums) {
+		int maxSpan = 0;
+		int span;
+		int j;
+		for (int i = 0; i < nums.length; i++) {
+			for (j = nums.length - 1; nums[i] != nums[j]; j--)
+				;
+			span = 1 + j - i;
+			if (span > maxSpan)
+				maxSpan = span;
+		}
+		return maxSpan;
+	}
+
+	/*
+	 * Return an array that contains exactly the same numbers as the given array,
+	 * but rearranged so that every 3 is immediately followed by a 4. Do not move
+	 * the 3's, but every other number may move. The array contains the same number
+	 * of 3's and 4's, every 3 has a number after it that is not a 3, and a 3
+	 * appears in the array before any 4.
+	 * 
+	 * 
+	 * fix34([1, 3, 1, 4]) → [1, 3, 4, 1] fix34([1, 3, 1, 4, 4, 3, 1]) → [1, 3, 4,
+	 * 1, 1, 3, 4] fix34([3, 2, 2, 4]) → [3, 4, 2, 2]
+	 */
+	public int[] fix34(int[] nums) {
+		int j = 1;
+		for (int i = 0; i < nums.length - 1; i++) {
+			if (nums[i] == 3 && nums[i + 1] != 4) {
+				for (; nums[j] != 4; j++)
+					;
+				nums[j] = nums[i + 1];
+				nums[i + 1] = 4;
+			}
+		}
+		return nums;
+	}
+
+	/*
+	 * 
+	 */
 }
