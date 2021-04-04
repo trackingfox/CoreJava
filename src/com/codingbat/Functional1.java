@@ -227,4 +227,5 @@ public class Functional1 {
 		nums.removeIf(n -> n % 10 == 5 || n % 10 == 6);
 		return nums;
 	}
+
 }
