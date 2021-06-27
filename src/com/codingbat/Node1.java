@@ -1,11 +1,11 @@
 package com.codingbat;
 
-public class Node {
+public class Node1 {
 
 	int key;
-	Node left, right;
+	Node1 left, right;
 
-	public Node(int item) {
+	public Node1(int item) {
 		key = item;
 		left = right = null;
 
@@ -14,10 +14,10 @@ public class Node {
 }
 
 class BinaryTree {
-	Node root;
+	Node1 root;
 	// Traverse tree
 
-	public void traverseTree(Node node) {
+	public void traverseTree(Node1 node) {
 		if (node != null) {
 			traverseTree(node.left);
 			System.out.println(" " + node.key);
@@ -31,10 +31,10 @@ class BinaryTree {
 		BinaryTree tree = new BinaryTree();
 
 		// create nodes of the tree
-		tree.root = new Node(1);
-		tree.root.left = new Node(2);
-		tree.root.right = new Node(3);
-		tree.root.left.left = new Node(4);
+		tree.root = new Node1(1);
+		tree.root.left = new Node1(2);
+		tree.root.right = new Node1(3);
+		tree.root.left.left = new Node1(4);
 
 		System.out.println("\nBinary tree: ");
 		tree.traverseTree(tree.root);
