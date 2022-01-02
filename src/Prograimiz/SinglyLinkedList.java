@@ -97,6 +97,59 @@ public class SinglyLinkedList {
 
 	}
 
+	public void delete(int position) {
+		// position is valid and starting from 1
+		// 3->4->7->8->9->null
+		if (position == 1) {
+			head = head.next;
+		} else {
+			ListNode previous = head;
+			int count = 1;
+			while (count < position - 1) {
+				previous = previous.next;
+				count++;
+			}
+
+			ListNode current = previous.next;
+			previous.next = current.next;
+
+		}
+	}
+
+	public boolean find(ListNode head, int searchKey) {
+		if (head == null) {
+			return false;
+		}
+		ListNode current = head;
+		while (current != null) {
+			if (current.data == searchKey) {
+				return true;
+			}
+			current = current.next;
+		}
+
+		return false;
+
+	}
+
+	public ListNode reverse(ListNode head) {
+		if (head == null) {
+			return head;
+		}
+
+		ListNode current = head;
+		ListNode previous = null;
+		ListNode next = null;
+
+		while (current != null) {
+			next = current.next;
+			current.next = previous;
+			previous = current;
+			current = next;
+		}
+		return previous;
+	}
+
 	public static void main(String[] args) {
 
 		SinglyLinkedList sll = new SinglyLinkedList();
@@ -118,6 +171,18 @@ public class SinglyLinkedList {
 		sll.insertFirst(1);
 
 		sll.display();
+
+		SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+		singlyLinkedList.display(head);
+
+//		if (singlyLinkedList.find(head, 1)) {
+//			System.out.println("Search Key found!!!");
+//		} else {
+//			System.out.println("Search key not found!!!");
+
+		ListNode reverseListHead = singlyLinkedList.reverse(head);
+		singlyLinkedList.display(reverseListHead);
+//		}
 
 	}
 
