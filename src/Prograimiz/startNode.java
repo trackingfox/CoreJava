@@ -69,6 +69,16 @@ public class startNode {
 
 	}
 
+	public void removeLoop1(ListNode slowPtr) {
+		ListNode temp = head;
+		while (slowPtr.next != temp.next) {
+			temp = temp.next;
+			slowPtr = slowPtr.next;
+		}
+		slowPtr.next = null;
+
+	}
+
 	public void createALoopInLinkedList() {
 		ListNode first = new ListNode(1);
 		ListNode second = new ListNode(2);
