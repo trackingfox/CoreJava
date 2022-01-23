@@ -2,7 +2,7 @@ package Prograimiz;
 
 import java.util.NoSuchElementException;
 
-public class doublyLinkedList {
+public class DoublyLinkedList {
 
 	private ListNode head;
 	private ListNode tail;
@@ -18,7 +18,7 @@ public class doublyLinkedList {
 		}
 	}
 
-	public doublyLinkedList() {
+	public DoublyLinkedList() {
 		this.head = null;
 		this.tail = null;
 		this.length = 0;
@@ -94,6 +94,25 @@ public class doublyLinkedList {
 			head.next.previous = null;
 		}
 		head = head.next;
+		temp.next = null;
+		length--;
+		return temp;
+	}
+
+	public ListNode deleteLast() {
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
+		ListNode temp = tail;
+		if (head == tail) {
+			head = null;
+		} else {
+			tail.previous.next = null;
+		}
+		tail = tail.previous;
+		temp.previous = null;
+		length--;
+		return temp;
 	}
 
 	public static void main(String[] args) {
@@ -113,11 +132,28 @@ public class doublyLinkedList {
 //		dll.displayForward();
 //		dll.displayBackward();
 
-		doublyLinkedList dll = new doublyLinkedList();
+//		doublyLinkedList dll = new doublyLinkedList();
+//		dll.insertLast(1);
+//		dll.insertLast(10);
+//		dll.displayForward();
+
+//		doublyLinkedList dll = new doublyLinkedList();
+//		dll.insertLast(1);
+//		dll.insertLast(10);
+//		dll.insertLast(15);
+//		dll.displayForward();
+//
+//		dll.deleteFirst();
+//		dll.displayForward();
+
+		DoublyLinkedList dll = new DoublyLinkedList();
 		dll.insertLast(1);
 		dll.insertLast(10);
+		dll.insertLast(15);
 		dll.displayForward();
 
+		dll.deleteLast();
+		dll.displayForward();
 	}
 
 }
