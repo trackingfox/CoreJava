@@ -47,7 +47,7 @@ public class BinarySearchTree {
 			return;
 		}
 		inOrder(root.left);
-		System.out.println(root.data + " ");
+		System.out.print(root.data + " ");
 		inOrder(root.right);
 	}
 
@@ -75,6 +75,12 @@ public class BinarySearchTree {
 		bst.insert(1);
 
 		bst.inOrder();
+
+		if (null != bst.search(3)) {
+			System.out.println("Key found !!!");
+		} else {
+			System.out.println("Key not found !!!");
+		}
 
 	}
 
