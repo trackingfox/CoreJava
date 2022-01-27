@@ -23,4 +23,8 @@ public class MaxPQ {
 		System.out.println(pq.isEmpty());// true
 	}
 
+	public void insert(int x) {
+
+	}
+
 }
