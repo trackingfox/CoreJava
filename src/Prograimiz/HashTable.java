@@ -36,6 +36,10 @@ public class HashTable {
 	}
 
 	public void put(Integer key, String value) {
+		if (key == null || value == null) {
+			throw new IllegalArgumentException("Key or value is null !!!");
+		}
+		int bucketIndex = getBucketIndex(key);
 
 	}
 
