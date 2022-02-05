@@ -119,8 +119,9 @@ public class HashTable {
 		table.put(21, "Sana");
 		table.put(21, "Harry");
 		table.put(41, "Dinesh");
-		System.out.println(table.size());
+		System.out.println(table.size());// (105, "Tom") ->(21, "Sana") ->(21,"Harry")-> (41,"Dinesh") ->null
 		System.out.println(table.get(31));
+		System.out.println(table.remove(21));
 	}
 
 }

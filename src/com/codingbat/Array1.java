@@ -1,5 +1,7 @@
 package com.codingbat;
 
+import org.junit.Test;
+
 public class Array1 {
 
 	/*
@@ -297,4 +299,37 @@ public class Array1 {
 	 */
 
 	// List<Integer> list3 = Arrays.asList(myIntegerArray)
+//-------------------------------------------------------------------------------------------------
+	/*
+	 * Given two non-negative integers num1 and num2 represented as strings, return
+	 * the product of num1 and num2, also represented as a string. Example 1:
+	 * 
+	 * Input: num1 = "2", num2 = "3" Output: "6"
+	 */
+
+	public String multiply(String nums1, String nums2) {
+		int[] products = new int[nums1.length() + nums2.length()];
+		for (int i = nums1.length() - 1; i >= 0; i--)
+			for (int j = nums2.length() - 1; j >= 0; j--)
+				products[i + j + 1] += (nums1.charAt(i) - '0') * (nums2.charAt(j) - '0');
+
+		int carry = 0;
+		StringBuilder sb = new StringBuilder();
+		for (int i = products.length - 1; i >= 0; i--) {
+			sb.insert(0, (products[i] + carry) % 10);
+			carry = (products[i] + carry) / 10;
+		}
+
+		while (sb.length() != 0 && sb.charAt(0) == '0')
+			sb.deleteCharAt(0);
+
+		return sb.length() == 0 ? "0" : sb.toString();
+	}
+
+	@Test
+	public void multiplyTest() {
+		String s = multiply("456", "567");
+		System.out.println(s);
+
+	}
 }

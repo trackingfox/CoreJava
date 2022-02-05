@@ -2,11 +2,11 @@ package Prograimiz;
 
 public class startNode {
 
-	private ListNode head;
+	public ListNode head;
 
-	private static class ListNode {
-		private int data; // generic type
-		private ListNode next;
+	public class ListNode {
+		public int data; // generic type
+		public ListNode next;
 
 		public ListNode(int data) {
 			this.data = data;

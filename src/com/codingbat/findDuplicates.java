@@ -3,10 +3,9 @@ package com.codingbat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class findDuplicates {
+import org.junit.Test;
 
-	public static void main(String[] args) {
-	// TODO Auto-generated method stub
+public class findDuplicates {
 
 	List<Integer> findDuplicates(int[] nums) {
 
@@ -23,8 +22,14 @@ public class findDuplicates {
 
 		return res;
 	}
-}
 
-}
+	@Test
+	public void findDuplicates() {
+		List<Integer> res = findDuplicates(new int[] { 1, 2, 3, 3, 3, 2, });
+		for (int i : res) {
+			System.out.print(i + " ");
+		}
+
+	}
 
 }

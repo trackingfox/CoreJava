@@ -182,7 +182,7 @@ public class BinaryTree {
 
 	public static void main(String[] args) {
 
-		BinaryTree bt = new BinaryTree();
+		symmetricTree bt = new symmetricTree();
 		bt.createBinaryTree();
 		// bt.preOrder(bt.root);
 		// bt.preOrder();
